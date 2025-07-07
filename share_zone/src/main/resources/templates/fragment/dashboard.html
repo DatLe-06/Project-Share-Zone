@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+<div th:fragment="dashboard" >
+    <div class="profile">
+        <div class="profile-img">
+            <img th:src="@{/media/{name-avatar}(name-avatar=${avatar})}" alt="Avatar">
+        </div>
+        <div class="profile-info">
+            <h2 th:text="${name}"></h2>
+            <div class="profile-buttons">
+                <button id="edit-profile-btn">Edit profile</button>
+            </div>
+            <div class="stats"></div>
+        </div>
+    </div>
+
+    <div class="tabs"></div>
+
+    <div class="profile-content">
+        <table class="dashboard">
+            <tr class="dashboard">
+                <th class="dashboard">Id</th>
+                <th class="dashboard">Name</th>
+                <th class="dashboard">Email</th>
+                <th class="dashboard">Media Uploaded</th>
+                <th class="dashboard">Media Favourite</th>
+                <th class="dashboard">Followers</th>
+                <th class="dashboard">Following</th>
+                <th class="dashboard">Delete</th>
+            </tr>
+            <tr class="dashboard" th:each="data:${all_data}">
+                <td class="dashboard" th:text="${data.id}"></td>
+                <td class="dashboard" th:text="${data.name}"></td>
+                <td class="dashboard" th:text="${data.email}"></td>
+                <td class="dashboard" th:text="${data.mediaUploaded.size()}"></td>
+                <td class="dashboard" th:text="${data.mediaFavourite.size()}"></td>
+                <td class="dashboard" th:text="${data.followers.size()}"></td>
+                <td class="dashboard" th:text="${data.following.size()}"></td>
+                <td class="dashboard"><a th:href="@{/home-page/admin/delete/${data.id}}"
+                       onclick="return confirm('Are you sure you want to delete this user?')">
+                    <button>Delete</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+.profile {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    border: 2px solid #333;
+}
+
+.profile-img img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.profile-info p {
+    color: gray;
+    margin: 5px 0;
+}
+
+.profile-buttons {
+    margin-top: 10px;
+}
+
+.profile-buttons button {
+    background-color: #f45b79;
+    border: none;
+    padding: 6px 12px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.stats {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.tabs {
+    display: flex;
+    padding: 0 20px;
+    border-bottom: 1px solid #222;
+}
+
+.tab {
+    margin-right: 20px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: gray;
+}
+
+.tab.active {
+    border-bottom: 2px solid #000000;
+}
+
+.profile-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.upload-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#follow-btn {
+    color: white;
+}
+
+#edit-profile-btn {
+    background-color: black;
+    color: white;
+}

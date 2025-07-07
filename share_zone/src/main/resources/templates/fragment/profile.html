@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<div th:fragment="profile">
+    <div class="profile">
+        <div class="profile-img">
+            <img th:src="@{/media/{name-avatar}(name-avatar=${avatar})}" alt="Avatar">
+        </div>
+        <div class="profile-info">
+            <h2 th:text="${name}"></h2>
+            <div class="profile-buttons">
+                <button id="follow-btn">Follow</button>
+                <button id="edit-profile-btn">Edit profile</button>
+            </div>
+            <div class="stats">
+                <span>10K Following</span> | <span>315 Followers</span> | <span>0 Likes</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <a th:href="@{/home-page/profile/{target}(target='uploaded')}" style="text-decoration: none">
+            <div id="uploaded" class="tab">📹 My Upload</div></a>
+        <a th:href="@{/home-page/profile/{target}(target='favourite')}" style="text-decoration: none">
+            <div id="favourite" class="tab">❤️ Favorites</div></a>
+    </div>
+
+    <div class="profile-content" th:insert="fragment/fragments.html::all-media"></div>
+</div>
+</body>
+</html>

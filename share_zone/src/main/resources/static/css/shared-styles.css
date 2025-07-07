@@ -1,0 +1,268 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+}
+
+.content {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navbar dọc */
+.navbar {
+    width: min-content;
+    background-color: #f45b79;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Nội dung bên phải */
+.right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header : search, user */
+.header {
+    background-color: #ecf0f1;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.header-content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-bar {
+    position: relative;
+    margin-right: 2%;
+    flex: 1;
+    width: 100%;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 40px 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+.search-bar .search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.auth-buttons button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #f45b79;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#icon-user {
+    width: 40px;
+    height: 40px;
+    background-color: #f45b79;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 4px;
+    display: none;
+    z-index: 1000;
+    min-width: 120px;
+    padding: 8px;
+}
+
+.dropdown-menu button {
+    background-color: white;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: black;
+    padding: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f4859b;
+    color: white;
+}
+
+/* Nội dung chính */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+/* Zone add media */
+.zone-add-media {
+    position: fixed;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 400px;
+    height: fit-content;
+    padding: 20px;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.zone-add-media.visible {
+    opacity: 1;
+    display: block;
+}
+
+.zone-add-media table, td {
+    width: 100%;
+    height: fit-content;
+}
+
+.zone-add-media input {
+    width: 100%;
+}
+
+td#area-upload {
+    padding: 10px;
+    border: 1px dotted #f45b79;
+    text-align: center;
+}
+
+td#btn-upload {
+    border: none;
+    text-align: center;
+}
+
+button#upload {
+    gap: 8px;
+    background-color: #f45b79;
+    color: white;
+    padding: 10px 50px 10px 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+/* Overlay */
+.model-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 999;
+}
+
+.model-overlay.visible {
+    display: block;
+}
+
+/* notify */
+.notify {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    right: 50%;
+    background-color: white;
+    border-radius: 8px;
+    /*border-radius: 20%/50%;*/
+    transform: translate(-50%, -50%);
+    min-width: 30vw;
+    height: fit-content;
+    padding: 10px 20px 10px 20px;
+    z-index: 1001;
+    color: black;
+}
+
+td.title {
+    text-align: center;
+}
+
+td.title p {
+    font-family: Pacifico, cursive;
+    font-style: italic;
+    font-weight: bold;
+    font-size: xx-large;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #f45b79;
+}
+
+/* Event hover */
+.navbar a:hover {
+    background-color: #ff0000;
+}

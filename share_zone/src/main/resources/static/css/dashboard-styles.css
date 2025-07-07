@@ -1,0 +1,52 @@
+tr.dashboard, td.dashboard, th.dashboard {
+    border: 1px solid black;
+    padding: 15px;
+    text-align: center;
+}
+
+td.dashboard button {
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+
+td.dashboard button:hover {
+    background-color: #656464;
+}
+
+table.dashboard {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th.dashboard:nth-child(1), td.dashboard:nth-child(1) {
+    width: 5%;
+}
+
+th.dashboard:nth-child(2), td.dashboard:nth-child(2) {
+    width: 20%;
+}
+
+th.dashboard:nth-child(3), td.dashboard:nth-child(3) {
+    width: 20%;
+}
+
+th.dashboard:nth-child(4), td.dashboard:nth-child(4) {
+    width: 5%;
+}
+
+th.dashboard:nth-child(5), td.dashboard:nth-child(5) {
+    width: 5%;
+}
+
+th.dashboard:nth-child(6), td.dashboard:nth-child(6) {
+    width: 5%;
+}
+
+th.dashboard:nth-child(7), td.dashboard:nth-child(7) {
+    width: 5%;
+}
+
+th.dashboard:nth-child(8), td.dashboard:nth-child(8) {
+    width: 10%;
+}

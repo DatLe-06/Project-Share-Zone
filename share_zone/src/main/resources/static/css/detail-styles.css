@@ -1,0 +1,151 @@
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-panel {
+    width: 60%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.left-panel img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.right-panel {
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    overflow-y: auto;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.favorite-btn.save {
+    padding: 10px 15px;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.favorite-btn.saved {
+    padding: 10px 15px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.comments {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.comment {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.comment img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.comment-content {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: gray;
+    margin-top: 5px;
+}
+
+/* Input thêm comment */
+form.comment-input-container {
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    gap: 10px;
+}
+
+.comment-input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.comment-input-container button {
+    padding: 10px 15px;
+    border: none;
+    background: #f45b79;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-input-container button:hover {
+    background: #f8adbc;
+}

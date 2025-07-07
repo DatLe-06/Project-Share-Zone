@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail-Media</title>
+</head>
+<body>
+<div th:fragment="detail-media" id="detail-media" class="container">
+    <!-- BÊN TRÁI -->
+    <div class="left-panel">
+        <a class="nav-button prev-btn"><i class="fas fa-arrow-alt-circle-left"></i></a>
+        <img id="mainImage" th:src="@{/media/{name-image}(name-image=${media_display.media.url})}" alt="Ảnh">
+        <a class="nav-button next-btn"><i class="fas fa-arrow-alt-circle-right"></i></a>
+    </div>
+
+    <!-- BÊN PHẢI -->
+    <div class="right-panel">
+        <!-- Phần trên -->
+        <div class="top-info">
+            <div class="user-info">
+                <img th:src="@{/media/{name-avatar}(name-avatar=${avatar_user_upload})}" alt="User">
+                <span><strong th:text="${name_user_upload}"></strong></span>
+            </div>
+            <div class="title" id="mediaTitle">Tiêu đề của ảnh/video</div>
+            <div class="description" id="mediaDescription">Mô tả ngắn gọn về nội dung ảnh hoặc video đang hiển thị.
+            </div>
+            <div th:if="${media_display.media.uploadedBy.id != session.userId}">
+                <form th:action="@{/home-page/detail/handle-favourite}" method="post">
+                    <button class="favorite-btn" type="submit"
+                            th:class="${media_display.isFavourite} ? 'saved' : 'save'"
+                            th:attr="onclick=${session.userId == null} ? 'openSignInPopup(); return false;' : ''">
+                        <span th:text="${media_display.isFavourite} ? '❤️ Saved' : 'Save'"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Phần comment -->
+        <div class="comments" id="commentList">
+            <div class="comment" th:each="comment:${comments}">
+                <img th:src="@{/media/{name-avatar}(name-avatar=${comment.commentedBy.avatar})}" alt="Commenter">
+                <div class="comment-content"><span th:text="${comment.content}"></span>
+                    <div class="comment-time" th:datetime="${comment.commentedAt}"
+                    th:onload="${}">
+                </div>
+            </div>
+        </div>
+
+        <!-- Input thêm comment -->
+        <form class="comment-input-container"
+              th:action="@{/home-page/detail/add-comment}" method="post" style="display: block; width: 100%">
+            <table style="width: 100%">
+                <tr>
+                    <td><input type="hidden" name="mediaId" th:value="${media_display.media.id}"></td>
+                </tr>
+                <tr>
+                    <td><label for="newComment"></label>
+                        <input type="text" id="newComment" name="content" placeholder="Nhập bình luận..."
+                               style="width: 100%"></td>
+                    <td style="width: fit-content">
+                        <button th:if="${session.userId != null}" type="submit" style="width: 100%">Gửi</button>
+                        <button th:unless="${session.userId != null}" type="button" onclick="openSignInPopup()">Gửi
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

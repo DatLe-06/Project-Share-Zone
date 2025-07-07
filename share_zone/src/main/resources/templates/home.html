@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Zone</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/logo/pinterest.png}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" th:href="@{/css/home-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/shared-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/signin-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/signup-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/profile-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/detail-styles.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard-styles.css}">
+</head>
+<body onload="start()">
+<input id="signInEmail" type="hidden" th:value="${session.signInEmail}">
+<input id="signUpName" type="hidden" th:value="${session.signUpName}">
+<input id="signUpEmail" type="hidden" th:value="${session.signUpEmail}">
+<input id="target" type="hidden" th:value="${session.target}">
+
+<!-- content -->
+<div class="content">
+    <!-- Left : navbar -->
+    <nav th:fragment="nav-bar" class="navbar">
+        <a th:href="@{/home-page/go-home}" title="Home"><i class="fab fa-pinterest fa-2x"></i></a>
+        <a th:onclick="${session.userId == null} ? 'openSignInPopup()' : 'openZoneAddMedia()'" title="Add Media"><i
+                class="fa-solid fa-square-plus fa-2x"></i></a>
+        <a onclick="" title="Notifications"><i class="fa-solid fa-bell fa-2x"></i></a>
+        <a href="" title="Setting"><i class="fa-solid fa-gear fa-2x"></i></a>
+    </nav>
+
+    <!-- Right : header, main-content -->
+    <div class="right-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <!-- SEARCH BAR -->
+                <div class="search-bar">
+                    <label for="searchInput"></label><input type="text" id="searchInput" placeholder="Tìm kiếm...">
+                    <button class="search-btn" onclick="search()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <!-- NẾU CHƯA ĐĂNG NHẬP -->
+                <div class="auth-buttons" th:if="${session.userId == null}">
+                    <button class="user-btn" onclick="openSignInPopup()">Sign In</button>
+                    <button class="user-btn" onclick="openSignUpPopup()">Sign Up</button>
+                </div>
+
+                <!-- NẾU ĐÃ ĐĂNG NHẬP -->
+                <div class="user-dropdown" th:if="${session.userId != null}">
+                    <!-- Icon user -->
+                    <a th:href="@{/home-page/profile/{target}(target='uploaded')}">
+                        <img id="icon-user" th:src="@{/media/{name-avatar}(name-avatar=${avatar})}" alt="avatar"
+                             title="Tài khoản"></a>
+
+                    <!-- Icon mũi tên mở dropdown -->
+                    <button class="dropdown-toggle-btn" onclick="toggleDropdown()" title="Mở menu">
+                        <i class="fa-solid fa-caret-down fa-xl"></i>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdownMenu" class="dropdown-menu">
+                        <a th:href="@{/home-page/sign-out}">
+                            <button>Sign Out</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <div th:if="${session.location == 'HOME'}" th:insert="fragment/fragments.html::all-media"></div>
+            <div th:if="${session.location == 'PROFILE'}" th:insert="fragment/profile.html::profile"></div>
+            <div th:if="${session.location == 'DETAIL'}" th:insert="fragment/detail.html::detail-media"></div>
+            <div th:if="${session.location == 'DASHBOARD'}" th:insert="fragment/dashboard.html::dashboard"></div>
+        </main>
+    </div>
+</div>
+
+<!-- Zone add media -->
+<div class="model-overlay"></div>
+<div class="zone-add-media">
+    <form method="post" th:action="@{/home-page/upload}" th:object="${uploadForm}" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td id="area-upload">
+                    <input type="file" id="file" name="files" multiple accept="image/*,video/*"></td>
+            </tr>
+            <tr>
+                <td id="btn-upload">
+                    <button id="upload" type="submit"><i class="fa-solid fa-square-plus fa-2x"></i>Add</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<!-- Login Popup -->
+<div th:replace="fragment/sign-in.html::sign-in"></div>
+
+<!-- Sign Up Popup -->
+<div th:replace="fragment/sign-up.html::sign-up"></div>
+
+<!-- Notification -->
+<div th:if="${message} and ${notify_color == 'green'}" class="notify" style="border: 3px solid green; color: black"
+     th:insert="fragment/fragments.html::notificationPopup"></div>
+<div th:if="${error} and ${notify_color == 'red'}" class="notify" style="border: 3px solid red; color: black"
+     th:insert="fragment/fragments.html::notificationPopup"></div>
+
+<script th:src="@{/js/shared-scripts.js}"></script>
+</body>
+</html>
